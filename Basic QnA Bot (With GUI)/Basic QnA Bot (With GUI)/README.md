@@ -1,50 +1,152 @@
-# College Admission Q&A Bot
+# College Admission Chatbot
 
 ## Overview
 
-Welcome to the College Admission Q&A Bot project! This medium-level project guides you in creating a chatbot specifically designed to answer questions related to college admission. The bot provides information about admission procedures, requirements, and deadlines, aiming to assist prospective students in their application process.
+The College Admission Chatbot is a natural language processing (NLP)-based chatbot that assists students with queries related to college admissions. It utilizes deep learning techniques to classify user inputs and generate appropriate responses. The chatbot is built using Python with TensorFlow/Keras for the model, NLTK for text preprocessing, and Tkinter for the graphical user interface (GUI).
 
-## Project Requirements
+## Features
 
-1. **_Admission-Related Q&A:_**
-   - Develop a chatbot tailored to answer questions related to college admission.
-   - Include responses to queries about admission procedures, requirements, and deadlines.
+- **User-friendly GUI**: Built using Tkinter for ease of interaction.
+- **Natural Language Understanding**: Uses NLP techniques to process and understand user queries.
+- **Machine Learning Model**: A pre-trained deep learning model is used for intent classification.
+- **Customizable Responses**: Responses are stored in a JSON file and can be modified as needed.
+- **Interactive Experience**: The chatbot responds in real-time, providing a conversational experience.
 
-2. **_User Interaction:_**
-   - Create a flow where the chatbot engages the user in a conversation about their admission queries.
-   - Allow the user to ask multiple questions in a single session.
+## Technologies Used
 
-3. **_Contextual Understanding:_**
-   - Enhance the chatbot's ability to understand context by remembering information from previous interactions.
-   - Implement a mechanism for the chatbot to provide more personalized responses.
+- **Python**: Core programming language.
+- **TensorFlow/Keras**: For deep learning model loading and prediction.
+- **Natural Language Toolkit (NLTK)**: For text preprocessing (tokenization and lemmatization).
+- **Tkinter**: For building the chatbot GUI.
+- **JSON**: For storing predefined intents and responses.
+- **NumPy**: For handling numerical computations.
+- **Pickle**: For saving and loading processed data (words and classes).
 
-4. **_Connection to Backend (Optional):_**
-   - Integrate the chatbot with a backend system to fetch real-time admission-related information.
-   - Ensure the chatbot responses are up-to-date and accurate.
+## Installation and Setup
 
-5. **_Error Handling and Feedback:_**
-   - Implement robust error handling for cases where the chatbot encounters queries it cannot answer.
-   - Provide users with helpful feedback when their queries cannot be addressed.
+### Prerequisites
 
-## Getting Started
+Ensure that you have Python installed (preferably Python 3.7 or later). You can install the required dependencies using:
 
-To interact with the College Admission Q&A Bot, run the provided Python script. The bot will greet you and provide assistance with any questions you may have regarding college admission.
-
-```bash
-python admission_qa_bot.py
+```sh
+pip install numpy keras tensorflow nltk
 ```
 
-## Usage
+### Downloading Necessary NLTK Resources
 
-1. The bot will greet you and ask for your name for personalized responses.
-2. You can ask the bot multiple questions related to college admission.
-3. To end the conversation, type "goodbye," "bye," or "quit," and the bot will bid you farewell.
+Before running the chatbot, ensure that the necessary NLTK resources are available:
 
-## Additional Information
+```python
+import nltk
+nltk.download('punkt')
+nltk.download('wordnet')
+```
 
-This chatbot project can serve as a foundation for creating more advanced admission-related chatbots. You can extend the functionality by integrating with backend systems for real-time information or incorporating more sophisticated natural language processing techniques.
+### Cloning the Repository
 
-## Contributing
+Clone the repository or download the project files.
 
-Feel free to contribute by enhancing functionality, improving the code structure, or adding new features. If you have suggestions or find issues, please open a GitHub issue.
+```sh
+git clone https://github.com/Harshit-Soni78/AIPlaneTech.git
+cd "Day-4/Basic QnA Bot (With GUI)"
+```
 
+### Running the Chatbot
+
+1. Ensure that the trained model (`chatbot_model.h5`) and necessary data files (`words.pkl`, `classes.pkl`, `admission_data.json`) are present in the respective folders.
+2. Run the chatbot UI:
+
+```sh
+python chatbot_gui.py
+```
+
+## Project Structure
+
+```
+Basic QnA Bot (With GUI)/
+   │── Model/
+   │   ├── chatbot_model.h5      # Trained deep learning model
+   │   ├── words.pkl             # Pickled processed vocabulary
+   │   ├── classes.pkl           # Pickled classes for classification
+   │
+   │── Data/
+   │   ├── admission_data.json   # JSON file containing intents and responses
+   │
+   │── chatbot_ui.py             # Main UI script
+   │── train_chatbot.py          # Script to train the chatbot model
+   │── README.md                 # Project documentation
+```
+
+## How It Works
+
+### 1. **Preprocessing User Input**
+
+- The user input is tokenized using NLTK.
+- Lemmatization is applied to normalize words.
+
+### 2. **Bag-of-Words Representation**
+
+- The processed input is converted into a bag-of-words representation.
+- This allows the model to understand the user’s query in numerical form.
+
+### 3. **Predicting the Intent**
+
+- The trained neural network model classifies the input intent.
+- It outputs a probability distribution over the available intents.
+
+### 4. **Generating a Response**
+
+- The chatbot selects a response from the predefined responses in `admission_data.json`.
+- The response is displayed in the chatbot’s GUI.
+
+## Training the Chatbot
+
+To retrain the chatbot with new data:
+
+1. Modify `admission_data.json` to include new intents and responses.
+2. Run the training script:
+
+   ```sh
+   python train_bot.py
+   ```
+
+3. The model will be updated and saved as `chatbot_model.h5`.
+
+## Customization
+
+### Adding New Responses
+
+To add new intents and responses:
+
+1. Open `Data/admission_data.json`.
+2. Add a new intent with a unique tag, patterns (possible user inputs), and responses.
+
+   ```json
+   {
+   "tag": "scholarships",
+   "patterns": [
+      "Tell me about scholarships",
+      "Are there any scholarships available?"
+   ],
+   "responses": [
+      "Yes, we offer various scholarships. Please visit our website for more details."
+   ]
+   }
+   ```
+
+3. Retrain the model using `train_chatbot.py`.
+
+## Future Enhancements
+
+- **Voice Input Support**: Integrating speech recognition.
+- **Database Connectivity**: Fetching real-time data from a database.
+- **Web-Based Interface**: Deploying as a web application.
+- **Advanced NLP**: Using transformer-based models for better understanding.
+
+## Author
+
+**Harshit Soni**  
+GitHub: [Harshit-Soni78](https://github.com/Harshit-Soni78)
+
+---
+Made with ❤️ by Harshit Soni
